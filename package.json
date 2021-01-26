@@ -1,0 +1,33 @@
+{
+  "name": "esmateria",
+  "version": "1.0.0",
+  "description": "\"# Esmalteria\"",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WalkerGilSouza/Esmalteria.git"
+  },
+  "keywords": [],
+  "author": "Walker Gil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WalkerGilSouza/Esmalteria/issues"
+  },
+  "homepage": "https://github.com/WalkerGilSouza/Esmalteria#readme",
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "google-spreadsheet": "^3.1.15",
+    "next": "^10.0.4",
+    "postcss": "^8.2.1",
+    "postcss-import": "^14.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "swr": "^0.4.0",
+    "tailwindcss": "^2.0.2"
+  }
+}
