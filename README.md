@@ -1,9 +1,9 @@
-"# Esmalteria" 
+# Esmalteria 
 
 
-Para rodar o código:
+### Para rodar o código:
 
-npm install npm
-npm run dev
+1. npm install
+2. npm run dev
 
-Site ainda em construção...
+**_Site ainda em construção..._**
