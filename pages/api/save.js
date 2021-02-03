@@ -13,7 +13,7 @@ export default async (req, res) => {
     const data = JSON.parse(req.body)
 
     //NOME	EMAIL	WHATSAPP	SENHA
-    //adiciona dados na linha detro da sheet indexada acima
+    //adiciona dados na linha dentro da sheet indexada acima
     await sheet.addRow({
       NOME: data.NOME,
       EMAIL: data.EMAIL,

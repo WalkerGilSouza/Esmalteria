@@ -35,9 +35,11 @@ const Index = () => {
                     type='button' className='flex-shrink-0 font-dosis bg-blue-400 hover:bg-blue-600 rounded p-1 focus:outline-none'>Cadastrar
                 </button>
                 </Link>
+                <Link href='/home'>
                 <button
                   type='button' className='flex-shrink-0 font-dosis bg-blue-400 hover:bg-blue-600 rounded py-1 px-4 focus:outline-none'>Entrar
               </button>
+              </Link>
               </div>
             </form>
           </div>
