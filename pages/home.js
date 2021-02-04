@@ -1,13 +1,19 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
+import useSWR from 'swr'
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Home = () => {
+    const { data, error } = useSWR('/api/get-proficionais', fetcher)
     const [ open, setOpen ] = useState(false)
+    
+    const includeCard = [0, 1,]
+
     const toggle = () => {
         setOpen(!open)
     }
-
+    
     return (
         <div>
             <nav className='bg-purple-500'>
@@ -43,11 +49,11 @@ const Home = () => {
                                 <button className='bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:offset-gray-800 focus:ring-white' onClick={toggle}>
                                 {!open &&
                                     <svg className='block h-6 w-6' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
-                                        <path strokeLinecap='round' strokeLinejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16' />
+                                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M4 6h16M4 12h16M4 18h16' />
                                     </svg>}
                                 {open &&
                                     <svg className='block h-6 w-6' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
-                                        <path strokeLinecap='round' strokeLinejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12' />
+                                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12' />
                                     </svg>                                
                                 }                       
                                 </button>
@@ -66,17 +72,26 @@ const Home = () => {
                     <div className='px-4 py-6 sm:px-0'>
                         <div className='flex border-4 border-dashed border-gray-200 rounded-lg h-80'>
                             <div className='flex flex-shrink-0 mx-auto'>
-                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
-                                    <div className='border-gray-600 border shadown-lg rounded-md px-2 text-center'>
-                                        <h5 className='font-bold font-dosis py-2'>PROFISIONAIS</h5>
-                                        <div className='mt-3 flex border border-gray-800 rounded-md p-2 bg-purple-100 hover:bg-purple-300'>
-                                            <img className='block h-12' src='/rosto1.png' />
-                                            <div className='sm:ml-3 sm:text-left text-center'>
-                                            <p className='text-md font-dosis font-semibold'>Nome Funcionaria</p>
-                                            <p className='text-sm text-gray-400 '>Função</p>
+                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>                                
+                                    
+                                        <div className='border-gray-600 border rounded-md px-2 text-center'>
+                                            <h5 className='font-bold font-dosis py-2'>PROFISIONAIS</h5>
+                                        {includeCard.map(() =>
+                                            <div>
+                                                {!data && <p>Carregando...</p>}
+                                                {!error && data &&
+                                                    <div className='mt-3 flex border border-gray-800 shadown-lg rounded-md p-2 bg-purple-100 hover:bg-purple-300'>
+                                                        <img className='block h-12' src='/rosto1.png' />
+                                                        <div className='sm:ml-3 sm:text-left text-center'>
+                                                        <p className='text-md font-dosis font-semibold'>{data.nomeFunc}</p>
+                                                        <p className='text-sm text-gray-400 '>{data.funFunc}</p>
+                                                        </div>
+                                                    </div>
+                                                }
                                             </div>
-                                        </div>
-                                    </div>
+                                            )
+                                        }
+                                        </div>                                        
                                     <div className='border-gray-600 border shadown-lg rounded-md px-2 text-center'>
                                         <h5 className='font-bold font-dosis py-2'>SERVIÇOS</h5>
                                         <div className='flex border border-gray-600 shadow-lg p-2 mt-3 rounded-md'>
